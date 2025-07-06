@@ -66,7 +66,7 @@
         />
 
         <p id="errorMsg" class="text-center text-red-600 text-sm hidden">
-          ID incorrecto
+          ID incorrecto. Por favor, contacta al gerente.
         </p>
 
         <button
@@ -107,15 +107,7 @@
       });
 
       getAccessBtn.addEventListener("click", () => {
-        const id = userIdInput.value.trim();
-        const isValid = /^\d{4,}$/.test(id);
-        if (!isValid) {
-          errorMsg.classList.remove("hidden");
-        } else {
-          errorMsg.classList.add("hidden");
-          modal.classList.add("hidden");
-          userIdInput.value = "";
-        }
+        errorMsg.classList.remove("hidden");
       });
     </script>
   </body>
