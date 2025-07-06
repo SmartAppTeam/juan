@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OPTIMA JUAN BOT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body class="min-h-screen bg-gradient-to-b from-rose-500 via-orange-400 to-yellow-300 flex items-start justify-center pt-10 p-4">
+    <div class="w-full max-w-sm bg-white bg-opacity-90 rounded-2xl shadow-xl p-6 space-y-5">
+      <h1 class="text-center text-3xl font-extrabold text-gray-900">OPTIMA JUAN BOT</h1>
+
+      <img
+        src="avatar.png"
+        alt="Aviator"
+        class="w-full h-44 object-contain rounded-xl"
+      />
+
+      <div class="text-center text-gray-700 font-medium leading-tight space-y-1">
+        <p>Inicia sesión para obtener acceso al bot</p>
+        <p class="text-sm text-gray-500">Para obtener tu ID, contacta al gerente</p>
+      </div>
+
+      <button
+        id="openModal"
+        class="w-full py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-xl font-semibold transition"
+      >
+        Iniciar sesión
+      </button>
+
+      <a
+        href="#"
+        class="w-full flex items-center justify-center gap-2 py-3 border border-rose-600 text-rose-600 rounded-xl font-semibold hover:bg-rose-50 transition"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+          <path d="M9.04 12.34l-.38 5.38c.54 0 .77-.23 1.05-.5l2.52-2.4 5.22 3.82c.96.53 1.64.25 1.88-.89l3.4-15.87c.35-1.44-.51-2-1.45-1.66L2.48 9.82c-1.41.55-1.4 1.34-.24 1.68l4.96 1.55 11.52-7.25c.54-.35 1.04-.16.63.22" />
+        </svg>
+        Contactar al gerente
+      </a>
+    </div>
+
+    <div
+      id="modal"
+      class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center px-4 hidden"
+    >
+      <div class="relative w-full max-w-md bg-white rounded-2xl shadow-lg p-6 space-y-4">
+        <button
+          id="closeModal"
+          class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition"
+        >✕</button>
+
+        <h2 class="text-xl font-bold text-gray-900 text-center">
+          Ingresa tu ID de 1xBet
+        </h2>
+
+        <p class="text-center text-sm text-gray-500">
+          Para obtener tu ID, contacta al gerente
+        </p>
+
+        <input
+          id="userId"
+          type="text"
+          placeholder="ID de usuario"
+          class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:border-rose-500 focus:ring-rose-500"
+        />
+
+        <p id="errorMsg" class="text-center text-red-600 text-sm hidden">
+          ID incorrecto
+        </p>
+
+        <button
+          id="getAccess"
+          class="w-full py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-xl font-semibold transition"
+        >
+          Obtener acceso
+        </button>
+
+        <a
+          href="#"
+          class="w-full flex items-center justify-center gap-2 py-3 border border-rose-600 text-rose-600 rounded-xl font-semibold hover:bg-rose-50 transition"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+            <path d="M9.04 12.34l-.38 5.38c.54 0 .77-.23 1.05-.5l2.52-2.4 5.22 3.82c.96.53 1.64.25 1.88-.89l3.4-15.87c.35-1.44-.51-2-1.45-1.66L2.48 9.82c-1.41.55-1.4 1.34-.24 1.68l4.96 1.55 11.52-7.25c.54-.35 1.04-.16.63.22" />
+          </svg>
+          Contactar al gerente
+        </a>
+      </div>
+    </div>
+
+    <script>
+      const openModalBtn = document.getElementById("openModal");
+      const closeModalBtn = document.getElementById("closeModal");
+      const modal = document.getElementById("modal");
+      const getAccessBtn = document.getElementById("getAccess");
+      const userIdInput = document.getElementById("userId");
+      const errorMsg = document.getElementById("errorMsg");
+
+      openModalBtn.addEventListener("click", () => {
+        modal.classList.remove("hidden");
+      });
+
+      closeModalBtn.addEventListener("click", () => {
+        modal.classList.add("hidden");
+        errorMsg.classList.add("hidden");
+        userIdInput.value = "";
+      });
+
+      getAccessBtn.addEventListener("click", () => {
+        const id = userIdInput.value.trim();
+        const isValid = /^\d{4,}$/.test(id);
+        if (!isValid) {
+          errorMsg.classList.remove("hidden");
+        } else {
+          errorMsg.classList.add("hidden");
+          modal.classList.add("hidden");
+          userIdInput.value = "";
+        }
+      });
+    </script>
+  </body>
+</html>
